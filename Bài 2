@@ -1,0 +1,134 @@
+/*Hãy viết chương trình liệt kêt tất cả các số tự nhiên K thỏa mãn đồng thời những điều kiện dưới đây:
+
+a)K là số có N chữ số;
+
+b)K là số nguyên tố;
+
+c)Đảo ngược các chữ số trong K là một số nguyên tố;
+
+d)Tổng các chữ số trong K cũng là một số nguyên tố;
+e)Mỗi chữ số trong K cũng là các số nguyên tố*/
+// Bài 2
+
+#include"stdafx.h"
+
+#include<iostream>
+
+#include<iomanip>
+
+#include<cmath>
+
+using namespace std;
+
+//K là số nguyên tố
+
+int ngto(int n)
+
+{
+
+ if (n < 2) return 0;
+
+ else
+
+ {
+
+  int i;
+
+  for (i = 2; i < sqrt(n); i++)
+
+  {
+
+   if (n%i == 0) return 0;
+
+  }
+
+  return 1;
+
+ }
+
+}
+
+/*Đảo ngược các chữ số trong K 
+
+Kiểm tra ngtố từng chữ số
+
+Kiểm tra tổng chữ số
+
+*/
+
+int dieukien(int n)
+
+{
+
+ int A[100],dem=0;
+
+ while (n > 0)//Lưu từng chữ số sang một mảng
+
+ {
+
+  A[dem] = n % 10;
+
+  n /= 10;
+
+  dem++;
+
+ }
+
+ int tongchuso = 0;
+
+ int songuoc=0,i;
+
+ for (i = 0; i < dem; i++)
+
+ {
+
+  songuoc = songuoc * 10 + A[i];
+
+  tongchuso = tongchuso + A[i];
+
+ }
+
+ for (i = 0; i < dem; i++)//Kiểm tra 3 điều kiện trên
+
+ {
+
+  if (ngto(A[i]) == 1 && ngto(songuoc) == 1&&ngto(tongchuso)==1) return 1;
+
+ }
+
+ return 0;
+
+}
+
+
+int main(void) 
+
+{
+
+ int n,i;
+
+ cout << "Nhap so chu so: ";
+
+ cin >> n;
+
+ for (i = (int)pow(10, n - 1); i < (int)pow(10, n); i++)
+
+ {
+
+  if (ngto(i) == 1 && dieukien(i) == 1)
+
+  {
+
+   cout << i << " ";
+
+  }
+
+ }
+
+ cout << "\n";
+
+ system("PAUSE");
+
+ return 0;
+
+}
