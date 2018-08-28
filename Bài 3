@@ -1,0 +1,75 @@
+#include"stdafx.h"
+#include<iostream>
+#include<cmath>
+using namespace std;
+int sodoixung(int n)
+{
+	int m, i;
+	m = n;
+	int sochuso = 0;
+	while (n > 0)
+	{
+		n /= 10;
+		sochuso++;
+	}
+	int A[100], dem = 0, dem1 = 0;
+	while (m > 0)
+	{
+		A[dem] = m % 10;
+		dem++;
+		m /= 10;
+	}
+	for (i = 0; i < dem; i++)
+	{
+		if (A[i] == A[dem - i - 1])
+		{
+			dem1++;
+		}
+	}
+	if (dem1 == sochuso) return 1;
+}
+int tongchuso(int n)
+{
+	int tong = 0;
+	while (n > 0)
+	{
+		tong = tong + n % 10;
+		n /= 10;
+	}
+	return tong;
+}
+int sokhac0(int n)
+{
+	int sochuso = 0,m;
+	m = n;
+	while (n > 0)
+	{
+		n /= 10;
+		sochuso++;
+	}
+	int a,dem=0;
+	while (n > 0)
+	{
+		a = n % 10;
+		n /= 10;
+		if (a != 0)
+		{
+			dem++;
+		}
+	}
+	if (dem == sochuso) return m;
+}
+int main()
+{
+	int n,m,i;
+	cin >> n;
+	for (i = 0; i < (int)(pow(10, n)); i++)
+	{
+		if (sodoixung(i) == 1 && tongchuso(i) % 10 == 0 && i == sokhac0(i))
+		{
+			cout << i << " ";
+		}
+	}
+	system("PAUSE");
+	return 0;
+}
