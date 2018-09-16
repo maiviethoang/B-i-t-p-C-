@@ -1,0 +1,49 @@
+#include"stdafx.h"
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+using namespace std;
+int A[100], n, OK = true;
+void Init()
+{
+	int i;
+	cout << "Nhap do dai xau: ";
+	cin >> n;
+	for (i = 1; i <= n; i++)
+	{
+		A[i] = 0;
+	}
+}
+void Result()
+{
+	int i;
+	for (i = 1; i <= n; i++)
+	{
+		cout << setw(3) << A[i];
+	}
+	cout << endl;
+}
+void Nextbit()
+{
+	int i = n;
+	while (i > 0 && A[i] != 0)
+	{
+		A[i] = 0;
+		i--;
+	}
+	if (i > 0) A[i] = 1;
+	else
+	{
+		OK = false;
+	}
+}
+int main()
+{
+	Init();
+	while (OK)
+	{
+		Result();
+		Nextbit();
+	}
+	return 0;
+}
