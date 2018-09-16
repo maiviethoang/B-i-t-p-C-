@@ -1,0 +1,56 @@
+#include<iostream>
+#include<string>
+#include<iomanip>
+using namespace std;
+int A[100],n,k,OK = true;
+void Init()
+{
+	int i;
+	cout << "Nhap n: ";
+	cin >> n;
+	cout << "Nhap k: ";
+	cin >> k;
+	for (i = 1; i <= k; i++)
+	{
+		A[i] = i;
+	}
+}
+void Result()
+{
+	int i;
+	for (i = 1; i <= k; i++)
+	{
+		cout <<setw(3)<< A[i];
+	}
+	cout << endl;
+}
+void Key()
+{
+	int i = k,j;
+	while (i > 0 && A[i]==n-k+i)
+	{
+		i--;
+	}
+	if (i > 0)
+	{
+		A[i] = A[i] + 1;
+		for (j = i + 1; j <= k; j++)
+		{
+			A[j] = A[i] + j - i;
+		}
+	}
+	else
+	{
+		OK = false;
+	}
+}
+int main()
+{
+	Init();
+	while (OK)
+	{
+		Result();
+		Key();
+	}
+	return 0;
+}
