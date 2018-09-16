@@ -1,0 +1,170 @@
+//Pn(x),Qm(x).
+#include"stdafx.h"
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+using namespace std;
+int n,m;
+int A[100], B[100];//A[] mag cac he so cua P,B[] mag cac he so cua Q
+void nhap()
+{
+	int i;
+	cout << "Nhap bac cua P(x): ";
+	cin >> n;
+	cout << "Nhap he so P(x): ";
+	for (i = 0; i <=n; i++)
+	{
+		cin >> A[i];
+	}
+	cout << "Nhap bac cua Q(x): ";
+	cin >> m;
+	cout << "Nhap he so cua Q(x): ";
+	for (i = 0; i <= m; i++)
+	{
+		cin >> B[i];
+	}
+}
+void b()
+{
+	int x0,x1=0,i;
+	cout << "Nhap x0: ";
+	cin >> x0;
+	cout << "Pn(x0)= ";
+	for (i = 0; i <= n; i++)
+	{
+		x1 = x1 + A[i] * (int)pow(x0, n - i);
+	}
+	cout << x1 << endl;
+}
+void daoham()
+{
+	int i;
+	cout << "Dao ham cua Pn(x) la: ";
+	for (i = 0; i < n; i++)
+	{
+		cout << (n - i)*A[i] << "*x^" << (n - 1 - i)<<"+";
+		if (i == n - 1)
+		{
+			cout << "0";
+		}
+	}
+	cout << endl;
+}
+void tongdathuc()
+{
+	int i;
+	if (n > m)
+	{
+		for (i = 0; i < n - m; i++)
+		{
+			cout << A[i] << "*x^" << n - i<< "+";
+		}
+		for (i = 0; i <= m; i++)
+		{
+			cout << B[i] + A[n - m + i] << "*x^" << m - i << "+";
+		}
+		cout << "0";
+		cout << endl;
+	}
+	if (m > n)
+	{
+		for (i = 0; i < -n + m; i++)
+		{
+			cout << A[i] << "*x^" << m - i << "+";
+		}
+		for (i = 0; i <= n; i++)
+		{
+			cout << A[i] + B[m - n + i] << "*x^" << n - i << "+";
+		}
+		cout << "0";
+		cout << endl;
+	}
+	if (m == n)
+	{
+		for (i = 0; i <= n; i++)
+		{
+			cout << A[i] + B[i] << "*x^" << n - i << "+";
+		}
+		cout << "0" << endl;
+	}
+	
+}
+void hieudathuc()
+{
+	int i;
+	if (n > m)
+	{
+		for (i = 0; i < n - m; i++)
+		{
+			cout << A[i] << "*x^" << n - i << "+";
+		}
+		for (i = 0; i <= m; i++)
+		{
+			cout <<"("<< B[i] - A[n - m + i] <<")"<< "*x^" << m - i << "+";
+		}
+		cout << "0";
+		cout << endl;
+	}
+	if (m > n)
+	{
+		for (i = 0; i < -n + m; i++)
+		{
+			cout << A[i] << "*x^" << m - i << "+";
+		}
+		for (i = 0; i <= n; i++)
+		{
+			cout <<"("<< A[i] - B[m - n + i] <<")"<< "*x^" << n - i << "+";
+		}
+		cout << "0";
+		cout << endl;
+	}
+	if (m == n)
+	{
+		for (i = 0; i <= n; i++)
+		{
+			cout <<"("<< A[i] - B[i] <<")"<< "*x^" << n - i << "+";
+		}
+		cout << "0" << endl;
+	}
+}
+//A[] mag cac he so cua P,B[] mag cac he so cua Q
+//n: bac cua P,m: bac cua Q.
+void tichdathuc()
+{
+	int data[100];
+	int i,j,k;
+	for (i = 0; i <= n+m; i++)
+	{
+		data[i] = 0;
+	}
+	for (i = n; i >= 0; i--)
+	{
+		for (j = m; j >= 0; j--)
+		{
+			for (k = n + m; k >= 0; k--)
+			{
+				if (i + j == k) data[k] += A[i] * B[j];
+			}
+		}
+	}
+	cout << "Pn(x)*Qm(x)= ";
+	for (i = 0; i <= n + m; i++)
+	{
+		if (i == n + m)
+		{
+			cout << data[i] << "*x^" << n + m - i;
+		}
+		else
+		{
+			cout << data[i] << "*x^" << n + m - i<<"+";
+		}
+		
+	}
+	cout << endl;
+}
+int main()
+{
+	nhap();
+	thuongdathuc();
+	return 0;
+}
