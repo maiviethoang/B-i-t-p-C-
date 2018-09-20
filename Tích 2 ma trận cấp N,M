@@ -1,0 +1,63 @@
+// codetrenblog.cpp : Defines the entry point for the console application.
+#include"stdafx.h"
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+using namespace std;
+int hangA, cotA, hangB, cotB;
+int A[100][100], B[100][100];
+int matrantich[20][20];
+void nhap()
+{
+	int i, j;
+	cout << "Ma tran A cap: ";
+	cin >> hangA >> cotA;
+	cout << "Nhap ma tran A: ";
+	for (i = 0; i < hangA; i++)
+	{
+		for (j = 0; j < cotA; j++)
+		{
+			cin >> A[i][j];
+		}
+	}
+	cout << "Ma tran B cap: ";
+	cin >> hangB >> cotB;
+	cout << "Nhap ma tran B: ";
+	for (i = 0; i < hangB; i++)
+	{
+		for (j = 0; j < cotB; j++)
+		{
+			cin >> B[i][j];
+		}
+	}
+
+}
+void tichmatran()
+{
+	int i, j,k;
+	for (i = 0; i < hangA; i++)
+	{
+		for (j = 0; j < cotB; j++)
+		{
+			matrantich[i][j] = 0;
+			for (k = 0; k < cotA; k++)
+			{
+				matrantich[i][j] += A[i][k] * B[k][j];
+			}
+		}
+	}
+	for (i = 0; i < hangA; i++)
+	{
+		for (j = 0; j < cotB; j++)
+		{
+			cout << " "<< matrantich[i][j];
+		}
+		cout << endl;
+	}
+}
+int main()
+{
+	nhap();
+	tichmatran();
+	return 0;
+}
