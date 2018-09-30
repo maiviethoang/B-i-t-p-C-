@@ -1,0 +1,20 @@
+#include<iostream>
+#include<cstring>
+#include<cmath>
+using namespace std;
+int main()
+{
+	char A[100];
+	int b;
+	cin >> A;
+	cin >> b;
+	int Result = 0;
+	int n = strlen(A);
+	for (int i = 0; i < n; i++)
+	{
+		Result = Result * 10 + A[i] - '0';
+		Result = Result % b;
+	}
+	cout << Result << endl;
+	return 0;
+}
