@@ -1,0 +1,60 @@
+/*Hinh chữ nhật gồm m*n hình vuông đơn vị.Hãy liệt kê tất cả các đường đi từ ô cuối cùng góc trái đến ô trên cùng góc phải.
+Biết mỗi bước đi chỉ đi được 1 đơn vị.*/
+#include<iostream>
+#include<cstring>
+#include<iomanip>
+using namespace std;
+int A[100], OK = true, n, m;
+void Init()
+{
+	cout << "Nhap so hang don vi: ";
+	cin >> m;
+	cout << "Nhap so cot don vi: ";
+	cin >> n;
+	for (int i = 1; i <= m + n; i++)
+	{
+		A[i] = 0;
+	}
+}
+void Result()
+{
+	for (int i = 1; i <= n + m; i++)
+	{
+		cout << setw(3) << A[i];
+	}
+	cout << endl;
+}
+void Duongdi()
+{
+	int i = m + n,dem=0;
+	while (i > 0 && A[i] != 0)
+	{
+		A[i] = 0;
+		i--;
+	}
+	if (i > 0)
+	{
+		A[i] = 1;
+		for (i = 1; i <= n + m; i++)
+		{
+			if (A[i] == 1) dem++;
+		}
+		if (dem == n)
+		{
+			Result();
+		}
+	}
+	else if(i==0)
+	{
+		OK = false;
+	}
+}
+int main()
+{
+	Init();
+	while (OK)
+	{
+		Duongdi();
+	}
+	return 0;
+}
