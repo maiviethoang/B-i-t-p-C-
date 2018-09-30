@@ -1,0 +1,31 @@
+//Tìm UCLN(a,b) biết a có ít nhất 128 chữ số.
+#include"stdafx.h"
+#include<iostream>
+#include<cstring>
+#include<cmath>
+using namespace std;
+int main()
+{
+	char a[100];
+	int b;
+	cin >> a;
+	cin >> b;
+	int Result = 0;
+	int n = strlen(a);
+	for (int i = 0; i < n; i++)
+	{
+		Result = Result * 10 + a[i] - '0';
+		Result = Result % b;
+	}
+	//a%b=Result;
+	int UCLN;
+	for (int i = 1; i <= Result || i <= b; i++)
+	{
+		if (Result%i == 0 && b%i == 0)
+		{
+			UCLN = i;
+		}
+	}
+	cout << UCLN << endl;
+	return 0;
+}
