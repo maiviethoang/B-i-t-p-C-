@@ -1,0 +1,68 @@
+//Cho dãy số A[] .Liệt kê các tổ hợp của n phần từ (các phần tử tăng dần)
+#include<iostream>
+#include<cstring>
+#include<iomanip>
+using namespace std;
+int A[100], OK = true, n, k;
+void Init()
+{
+	int i;
+	cout << "Nhap n: ";
+	cin >> n;
+	cout << "Nhap k: ";
+	cin >> k;
+	for (i = 1; i <= k; i++)
+	{
+		A[i] = i;
+	}
+}
+
+void Result()
+{
+	for (int i = 1; i <= k; i++)
+	{
+		cout << setw(3) << A[i];
+	}
+	cout << endl;
+}
+void Tohop()
+{
+	int i = k;
+	while (i > 0 && A[i] == n-k+i)
+	{
+		i--;
+	}
+	if (i > 0)
+	{
+		int j,dk=0;
+		A[i] = A[i] + 1;
+		for (j = i + 1; j <= k; j++)
+		{
+			A[j] = A[i] + j - i;
+		}
+		for (i = 1; i <= k; i++)
+		{
+			if (A[i] > A[i + 1]&&i<=k-1)//chú ý chỗ này i tối đa =k
+			{
+				dk++;
+			}
+		}
+		if (dk == 0)
+		{
+			Result();
+		}
+	}
+	else
+	{
+		OK = false;
+	}
+}
+int main()
+{
+	Init();
+	while (OK)
+	{
+		Tohop();
+	}
+	return 0;
+}
