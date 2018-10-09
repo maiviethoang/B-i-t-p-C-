@@ -1,0 +1,56 @@
+#include<iostream>
+#include<cmath>
+#include<string>
+#include<fstream>
+using namespace std;
+int main()
+{
+	ifstream FileIn;
+	FileIn.open("C:\\Users\\VIET HOANG\\Desktop\\Input.txt");
+	int n;
+	FileIn >> n;
+	int A[100][100],B[100][100];
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= 2; j++)
+		{
+			FileIn >> A[i][j];
+			B[i][j] = A[i][j];
+		}
+	}
+	FileIn.close();
+	ofstream FileOut;
+	FileOut.open("C:\\Users\\VIET HOANG\\Desktop\\Output.txt"); 
+	int j, i,a;
+	for (i = 1; i <= n; i++)
+	{
+		for (j = 1; j <= 2; j++)
+		{
+			FileOut << A[i][j] << "  ";
+		}
+		char  C[100];//từ chỗ này giống hàm chuyển đổi cơ số
+		int m = 0;
+		while (A[i][j-2] > 0)//chú ý chỗ này A[i][j-2] là số,A[i][j-1] là cơ số
+		{
+			a = A[i][j-2] % A[i][j-1];
+			A[i][j-2] = A[i][j-2] / A[i][j-1];
+			if (a >= 10)
+			{
+				C[m] = a - 10 + 'A';
+			}
+			else
+			{
+				C[m] = a + '0';
+			}
+			m++;
+		}
+		for (int k = m - 1; k >= 0; k--)
+		{
+			FileOut << C[k];
+		}
+		FileOut << endl;
+	}
+	FileOut.close();
+	return 0;
+}
+
