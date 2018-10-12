@@ -1,0 +1,66 @@
+#include <fstream>
+#include <iostream>
+#include <string.h>
+sử dụng namespace std;
+#define MAX 1000
+#define MAXLENGTH 20
+struct TU
+{
+    char noidung [MAXLENGTH];
+    int dem;
+};
+TU danhsach [MAX];
+int main ()
+{
+    int sophantu = 0, sophantufile1 = 0;
+    char phantufile1 [MAXLENGTH];
+    // B1: Sao chép tệp 1 sang tệp 2
+    ifstream File1;
+    File1.open ("C: \\ Users \\ VIET HOANG \\ Máy tính để bàn \ Data1.in", ios_base :: in);
+    ofstream File2;
+    File2.open ("C: \\ Users \\ VIET HOANG \\ Máy tính để bàn \ Data2.in", ios_base :: app);
+    dòng char [255];
+        trong khi (! File1.eof ()) {// Tệp Lap den cuoi
+                File1.getline (dòng, 80); // doc mot dong
+                cout << line << endl; // dua ra noi dung f1
+                File2 << "" << dòng << endl; // ghi dong dòng vao f2;
+        }
+    File1.close (); // dong file f1
+    File2.close (); // dong file f2
+    // B2: Tim số lan xuất hiện các từ trong 1 tệp File2
+    char temp [MAXLENGTH];
+    bool timthay;
+    ifstream FileIn;
+    FileIn.open ("C: \\ Users \\ VIET HOANG \\ Máy tính để bàn \ Data2.in", ios_base :: in);
+    while (! FileIn.eof ())
+    {
+        timthay = false;
+        FileIn >> temp;
+        cho (int i = 0; i <sophantu; i ++)
+        {
+            if (strcmp (danhsach [i] .noidung, temp) == 0) // sao chép temp sang mot mang
+            {
+                danh sách [i] .dem ++;
+                timthay = true;
+                phá vỡ;
+            }
+        }
+        if (! timthay)
+        {
+            strcpy (danhsach [sophantu] .noidung, temp);
+            danhsach [sophantu] .dem = 1;
+            sophantu ++;
+        }
+    }
+    FileIn.close ();
+    của FileOut;
+    FileOut.open ("C: \\ Người dùng \\ VIET HOANG \\ Máy tính để bàn \\ Ketqua.out", ios_base :: out);
+    FileOut << sophantu << endl;
+    cho (int i = 0; i <sophantu; i ++)
+    {
+        FileOut << danhsach [i] .noidung << "" << danhsach [i] .dem;
+        FileOut << endl;
+    }
+    FileOut.close ();
+    trả về 0;
+}
