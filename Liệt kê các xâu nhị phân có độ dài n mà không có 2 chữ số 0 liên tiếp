@@ -1,0 +1,73 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+int n, A[100], OK = true;
+bool Ktra(int A[100], int dodaimang)
+{
+	int dem = 0,a=0;
+	for (int i = 1; i <= dodaimang; i++)
+	{
+		if (A[i] == 0)
+		{
+			dem++;
+		}
+		else
+		{
+			dem = 0;
+		}
+		if (dem >= 2)
+		{
+			a++;
+		}
+	}
+	if (a>0) return false;
+	else return true;
+}
+void Init()
+{
+	cout << "Nhap n: ";
+	cin >> n;
+	for (int i = 1; i <= n; i++)
+	{
+		A[i] = 0;
+	}
+}
+void Result()
+{
+	for (int i = 1; i <= n; i++)
+	{
+		cout << A[i] << " ";
+	}
+	cout << endl;
+}
+void Nextbit()
+{
+	int i = n;
+	while (i > 0 && A[i] != 0)
+	{
+		A[i] = 0;
+		i--;
+	}
+	if (i > 0)
+	{
+		A[i] = 1;
+	}
+	if (i <= 0)
+	{
+		OK = false;
+	}
+}
+int main()
+{
+	Init();
+	while (OK)
+	{
+		if (Ktra(A, n) == true)
+		{
+			Result();
+		}
+		Nextbit();
+	}
+	system("PAUSE");
+	return 0;
+}
